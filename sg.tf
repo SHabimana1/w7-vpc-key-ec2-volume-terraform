@@ -1,12 +1,12 @@
 
-  // security group
+// security group
 
 
 
 resource "aws_security_group" "web_server_sg" {
   name        = "web-server-sg"
   description = "Allow web traffic and SSH"
-  vpc_id      = aws_vpc.my-vpc.id 
+  vpc_id      = aws_vpc.my-vpc.id
 
   ingress {
     description = "HTTP from anywhere"
@@ -29,18 +29,18 @@ resource "aws_security_group" "web_server_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["98.197.203.225/32"]  # Replace with your IP
+    cidr_blocks = ["98.197.203.225/32"] # Replace with your IP
   }
 
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"  # All protocols
+    protocol    = "-1" # All protocols
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
     Name = "web-server-security-group"
   }
-  depends_on = [ aws_vpc.my-vpc ]
+  depends_on = [aws_vpc.my-vpc]
 }
